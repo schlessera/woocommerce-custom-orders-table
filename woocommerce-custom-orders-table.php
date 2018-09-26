@@ -32,7 +32,8 @@ define( 'WC_CUSTOM_ORDER_TABLE_PATH', plugin_dir_path( __FILE__ ) );
  */
 function wc_custom_order_table_autoload( $class ) {
 	// Bail early if the class/trait/interface is not in the root namespace.
-	if ( strpos( $class, '\\' ) === false ) {
+	if ( strpos( $class, '\\' ) !== false ) {
+		echo 'Skipping, as $class contains a namespace: ' . $class . PHP_EOL;
 		return;
 	}
 
@@ -45,9 +46,11 @@ function wc_custom_order_table_autoload( $class ) {
 
 	// Bail if the file name we generated does not exist.
 	if ( ! is_readable( $file ) ) {
+		echo 'Skipping, as $file is not readable: ' . $file . PHP_EOL;
 		return;
 	}
 
+	echo 'Including $file: ' . $file . PHP_EOL;
 	include $file;
 }
 spl_autoload_register( 'wc_custom_order_table_autoload' );
