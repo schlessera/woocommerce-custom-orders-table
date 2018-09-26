@@ -38,7 +38,7 @@ function wc_custom_order_table_autoload( $class ) {
 	}
 
 	// Assemble file path and name according to WordPress code style.
-	$filename = 'class-' . str_replace( '_', '-', $class ) . 'php';
+	$filename = 'class-' . str_replace( '_', '-', $class ) . '.php';
 	$filepath = WC_CUSTOM_ORDER_TABLE_PATH . 'includes/' . $filename;
 
 	// Bail if the file name we generated does not exist.
