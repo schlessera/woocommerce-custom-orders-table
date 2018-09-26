@@ -37,21 +37,18 @@ function wc_custom_order_table_autoload( $class ) {
 		return;
 	}
 
-	// Assemble file name and path according to WordPress code style.
-	$file = sprintf(
-		'%s/includes/%s',
-		WC_CUSTOM_ORDER_TABLE_PATH,
-		'class-' . str_replace( '_', '-', $class )
-	);
+	// Assemble file path and name according to WordPress code style.
+	$filename = 'class-' . str_replace( '_', '-', $class ) . 'php';
+	$filepath = WC_CUSTOM_ORDER_TABLE_PATH . 'includes/' . $filename;
 
 	// Bail if the file name we generated does not exist.
-	if ( ! is_readable( $file ) ) {
-		echo 'Skipping, as $file is not readable: ' . $file . PHP_EOL;
+	if ( ! is_readable( $filepath ) ) {
+		echo 'Skipping, as $file is not readable: ' . $filepath . PHP_EOL;
 		return;
 	}
 
-	echo 'Including $file: ' . $file . PHP_EOL;
-	include $file;
+	echo 'Including $file: ' . $filepath . PHP_EOL;
+	include $filepath;
 }
 spl_autoload_register( 'wc_custom_order_table_autoload' );
 
